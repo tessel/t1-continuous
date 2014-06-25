@@ -1,0 +1,37 @@
+{
+  "name": "continuous",
+  "version": "1.0.0",
+  "description": "Continous tessel integration",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tessel/continuous.git"
+  },
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "aws-sdk": "~2.0.0-rc.14",
+    "bundle-deps": "^1.0.0",
+    "colors": "~0.6.2",
+    "colorsafeconsole": "0.0.4",
+    "firmata": "~0.3.2",
+    "nomnom": "~1.6.2",
+    "npm": "~1.4.2",
+    "osenv": "0.0.3",
+    "request": "~2.33.0",
+    "semver": "^2.3.0",
+    "shelljs": "^0.3.0",
+    "witwip": "^1.0.3",
+    "zulip": "~0.1.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "readme": "# build scripts for Tessel\n\neasy mode:\n\n```\n./all.sh\n```\n\n## Hard Mode\n\nmake a `stage` folder. Put into it the following files\n```\nstage/tessel-cli.tar.gz\nstage/tessel-cli-changelog.md\nstage/tessel-firmware.bin\nstage/tessel-firmware-changelog.md\nstage/tessel-firmware-info.json\n```\n\nnow run `node publish.js [-f firmware version] [-c cli version] [-min minimum required cli version] [-max required cli version]`\n\nmin_cli and max_cli are both optional, but -f or -c must exist to upload firmware/cli.",
+  "readmeFilename": "README.md",
+  "gitHead": "c69945ad4d035838c90b30ab230156c186519f22",
+  "_id": "continuous@1.0.0"
+}
