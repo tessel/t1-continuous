@@ -1,9 +1,10 @@
 WIFI_VER:=1.26
 MIN_CLI:=0.2.4
+FIRMWARE_BRANCH:=master
 
 
 # just names of folders
-.PHONY: build-cli build-firmware test builds logs www publish-dry 
+.PHONY: build-cli build-firmware test builds logs www publish-dry
 
 
 
@@ -25,7 +26,7 @@ clean-firmware:
 	cd build-firmware && make clean
 
 build-firmware:
-	cd build-firmware && make build
+	cd build-firmware && make build FIRMWARE_BRANCH=$(FIRMWARE_BRANCH)
 
 test-firmware:
 	cd build-firmware && make test
@@ -39,9 +40,9 @@ clean: clean-cli clean-firmware
 	rm -rf stage
 
 build: clean build-cli build-firmware
-	
+
 test: test-cli test-firmware
-	
+
 publish-dry:
 	@echo "$(tput setaf 1)Tagging firmware release with wifi version $(WIFI_VER), min cli version $(MIN_CLI) $(tput sgr0)"
 
@@ -63,4 +64,3 @@ publish: publish-dry
 		-c "$(CLI_COMMIT)" -C "$(CLI_TAG)" --min "$(MIN_CLI)" \
 		-f "$(FIRMWARE_COMMIT)" -F "$(FIRMWARE_TAG)" \
 		-w "$(WIFI_VER)"
-
