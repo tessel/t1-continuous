@@ -52,10 +52,15 @@ console.error('(version doesn\'t exist, creating.)')
 
 // If we need to update package.json and tag a release, do so.
 witwip(process.cwd(), function (err, pkgPath, pkgData) {
-	pkgData = require(pkgPath);
-	pkgData.version = next;
-	fs.writeFileSync(pkgPath, JSON.stringify(pkgData, null, '  ') + '\n', 'utf-8');
-	exec('git add package.json', {silent: true})
-	exec('git commit -m ' + next, {silent: true})
-	exec('git tag -a ' + next + ' -m ' + next, {silent: true})
+	if (err) {
+		console.error('Error in tagversion.js:', err);
+	}
+	if (typeof pkgPath == 'string') {
+		pkgData = require(pkgPath);
+		pkgData.version = next;
+		fs.writeFileSync(pkgPath, JSON.stringify(pkgData, null, '  ') + '\n', 'utf-8');
+		exec('git add package.json', {silent: true})
+		exec('git commit -m ' + next, {silent: true})
+		exec('git tag -a ' + next + ' -m ' + next, {silent: true})
+	}
 })
