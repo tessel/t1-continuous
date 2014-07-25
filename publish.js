@@ -105,7 +105,7 @@ function getBucket(bucket, next){
         , version: head.Metadata.version ? head.Metadata.version : null
         , min_cli: head.Metadata.min_cli ? head.Metadata.min_cli : 0
         , max_cli: head.Metadata.max_cli ? head.Metadata.min_cli : "*"
-        , wifi: head.Metadata.wifi ? head.Metadata.wifi : "1.26"});
+        , wifi: head.Metadata.wifi ? head.Metadata.wifi : "1.28"});
 
         if (count >= list.length){
           upload(jsonBlob, publishKey, bucket, function(md5){
