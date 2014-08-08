@@ -70,3 +70,10 @@ publish-cli: publish-dry
 
 	node publish.js \
 		-c "$(CLI_COMMIT)" -C "$(CLI_TAG)" --min "$(MIN_CLI)"
+
+publish-firmware: publish-dry
+	(cd build-firmware && make publish) || true
+
+	node publish.js \
+		-f "$(FIRMWARE_COMMIT)" -F "$(FIRMWARE_TAG)" \
+		-w "$(WIFI_VER)"

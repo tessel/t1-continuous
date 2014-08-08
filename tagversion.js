@@ -15,7 +15,9 @@ String.prototype.splitlines = function () {
 // Get a list of tags.
 var tags = exec('git tag -l', {silent: true}).output.splitlines().filter(function (tag) {
 	return semver.valid(tag);
-}).sort().reverse();
+}).sort(function (a, b) {
+	return semver.lt(a, b) ? -1 : semver.gt(a, b) ? 1 : 0;
+}).reverse();
 
 // Get current tag.
 var latest = tags[0] || 'v0.0.1';
